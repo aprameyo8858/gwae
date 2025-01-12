@@ -1,1 +1,1 @@
-python train.py setting/gwae.yaml
+python train.py settings/gwae.yaml
