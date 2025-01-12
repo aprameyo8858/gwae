@@ -10,10 +10,10 @@ from vaetc.models.utils import detach_dict
 from vaetc.models.vae import VAE
 from vaetc.models.infovae import MMDVAE, mmd
 from vaetc.data.utils import IMAGE_SHAPE
-from models.sgw_pytorch_original import sgw_gpu_original
-from models.risgw_original import risgw_gpu_original
-from models.rarisgw import rarisgw_gpu
-from models.rasgw_pytorch import rasgw_gpu
+from vaetc.models.sgw_pytorch_original import sgw_gpu_original
+from vaetc.models.risgw_original import risgw_gpu_original
+from vaetc.models.rarisgw import rarisgw_gpu
+from vaetc.models.rasgw_pytorch import rasgw_gpu
 
 from .causal import DifferentiableDAG, CausalLinear
 
@@ -511,6 +511,10 @@ class GromovWassersteinAutoEncoder(VAE):
         dz = dz_elem.norm(p=2, dim=2)
 
         # GW(data distro, model prior)
+        #loss_gw = sgw_gpu_original(x2s.to('cuda'), zs.to('cuda') ,'cuda',nproj=500,tolog=False,P=None)
+        #loss_gw = rasgw_gpu(x2s.to('cuda'), zs.to('cuda')  ,'cuda',nproj=500,tolog=False,P=None)
+        #loss_gw = rarisgw_gpu(x2s.to('cuda'), zs.to('cuda') ,'cuda' ,nproj=500,P=None,lr=0.001, max_iter=20, verbose=False, step_verbose=10, tolog=False, retain_graph=True)
+        #loss_gw = risgw_gpu_original(x2s.to('cuda'), zs.to('cuda')  ,'cuda' ,nproj=500,P=None,lr=0.001, max_iter=20, verbose=False, step_verbose=10, tolog=False, retain_graph=True)
         loss_gw = (torch.abs(dz - dx)).mean()
 
         # W(data, model)
