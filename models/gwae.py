@@ -11,9 +11,9 @@ from vaetc.models.vae import VAE
 from vaetc.models.infovae import MMDVAE, mmd
 from vaetc.data.utils import IMAGE_SHAPE
 from models.sgw_pytorch_original import sgw_gpu_original
-from vaetc.models.risgw_original import risgw_gpu_original
-from vaetc.models.rarisgw import rarisgw_gpu
-from vaetc.models.rasgw_pytorch import rasgw_gpu
+from models.risgw_original import risgw_gpu_original
+from models.rarisgw import rarisgw_gpu
+from models.rasgw_pytorch import rasgw_gpu
 
 from .causal import DifferentiableDAG, CausalLinear
 
